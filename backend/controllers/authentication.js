@@ -21,28 +21,29 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/profile', async (req, res) => {
-    try {
-        //split the authorization header into ["Bearer", "TOKEN"]:
-        const [authenticationMethod, token] = req.headers.authorization.split(' ')
+    res.json(req.currentUser)
+    // try {
+    //     //split the authorization header into ["Bearer", "TOKEN"]:
+    //     const [authenticationMethod, token] = req.headers.authorization.split(' ')
 
-        //decode the JWT
-        if (authenticationMethod === 'Bearer') {
-            const result = await jwt.decode(process.env.JWT_SECRET, token)
+    //     //decode the JWT
+    //     if (authenticationMethod === 'Bearer') {
+    //         const result = await jwt.decode(process.env.JWT_SECRET, token)
 
-            //get logged in user's id from the payload
-            const { id } = result.value
+    //         //get logged in user's id from the payload
+    //         const { id } = result.value
 
-            //find user using their id
-            let user = await User.findOne({
-                where: {
-                    userId: id
-                }
-            })
-            res.json(user)
-        }
-    } catch {
-        res.json(null)
-    }
+    //         //find user using their id
+    //         let user = await User.findOne({
+    //             where: {
+    //                 userId: id
+    //             }
+    //         })
+    //         res.json(user)
+    //     }
+    // } catch {
+    //     res.json(null)
+    // }
 })
 
 module.exports = router
