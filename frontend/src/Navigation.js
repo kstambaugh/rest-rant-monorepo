@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router";
 import { CurrentUser } from './contexts/CurrentUser';
@@ -30,7 +31,9 @@ function Navigation() {
                     Logged in as {currentUser.firstName} {currentUser.lastName}
                 </li>
                 <li style={{ float: 'right' }}>
-                    <a href="#" onClick={() => history.push("/login")}>
+                    <a href="/login" onClick={() => {
+                        localStorage.clear()
+                    }}>
                         Logout
                     </a>
                 </li>
