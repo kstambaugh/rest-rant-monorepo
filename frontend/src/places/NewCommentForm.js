@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { CurrentUser } from "../contexts/CurrentUser"
 
 function NewCommentForm({ place, onSubmit }) {
@@ -14,20 +14,6 @@ function NewCommentForm({ place, onSubmit }) {
     if (!currentUser) {
         return <p>You must be logged in to leave a rant or rave.</p>
     }
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await fetch(`http://localhost:5000/users`)
-    //         const users = await response.json()
-    //         setComment({ ...comment, authorId: users[0]?.userId })
-    //         setAuthors(users)
-    //     }
-    //     fetchData()
-    // }, [])
-
-    // let authorOptions = authors.map(author => {
-    //     return <option key={author.userId} value={author.userId}>{author.firstName} {author.lastName}</option>
-    // })
 
     function handleSubmit(e) {
         e.preventDefault()
